@@ -9,4 +9,4 @@ jobs:
       - name: Run tests
         uses: repos4u/octave-action@v1
         with:
-          command: add_numbers
+          command: test_add_numbers
