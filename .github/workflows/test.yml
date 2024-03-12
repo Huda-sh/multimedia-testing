@@ -9,5 +9,12 @@ jobs:
       - name: Run tests
         uses: repos4u/octave-action@v1
         with:
-          command: test_add_numbers
-        if: always()
+          command: test_add_numbers > output.txt
+      - name: Check condition
+        run: |
+          OUTPUT=$(cat output.txt)
+          echo "$OUTPUT" | grep -q "PASSES 2 out of 2 tests"
+          if [ $? -eq 0 ]; then
+            echo "Your answers are incorrect"
+            exit 1
+          fi
